@@ -12,6 +12,7 @@ def receive_via_rabbitmq(config):
     def callback(ch, method, properties, body):
         row = decrypt_message(config, body)
         insert_normalized(config, row)
+        print("RECEIVE!")
 
     channel.basic_consume(queue=rabbit_conf['queue'], on_message_callback=callback, auto_ack=True)
     print("Waiting for messages...")

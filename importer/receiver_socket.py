@@ -20,3 +20,4 @@ def receive_via_socket(config):
                     data += chunk
                 row = decrypt_message(config, data)
                 insert_normalized(config, row)
+                print("RECEIVE!")

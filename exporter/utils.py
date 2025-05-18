@@ -4,6 +4,7 @@ import sqlite3
 def create_table(config):
     conn = sqlite3.connect(config["sqlite_db"])  # путь до файла в config.yaml
     cursor = conn.cursor()
+    cursor.execute('DROP TABLE books_all;')
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS books_all (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
