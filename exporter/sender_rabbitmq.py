@@ -2,7 +2,7 @@ import pika
 from encryption import encrypt_message
 
 def send_via_rabbitmq(config, data_iter):
-    rabbit_conf = config['rabbitmq']
+    rabbit_conf = config['rabbitmq-export']
     connection = pika.BlockingConnection(pika.ConnectionParameters(rabbit_conf['host']))
     channel = connection.channel()
     channel.queue_declare(queue=rabbit_conf['queue'])
