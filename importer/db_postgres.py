@@ -38,6 +38,7 @@ def insert_normalized(config, row):
         cursor.execute("SELECT id FROM publishers WHERE name = %s;", (publisher,))
         publisher_id = cursor.fetchone()[0]
 
+    print(title, author_id, genre_id, publisher_id, year)
     # 4. Книга
     cursor.execute("""
         INSERT INTO books (title, author_id, genre_id, publisher_id, year)
