@@ -12,6 +12,8 @@ def create_table(config):
     cursor = conn.cursor()
 
     cursor.execute("""
+        DROP TABLE authors, genres, publishers, books, borrowers, borrows;        
+        
         CREATE TABLE IF NOT EXISTS authors (
             id SERIAL PRIMARY KEY,
             name TEXT UNIQUE NOT NULL
@@ -33,20 +35,26 @@ def create_table(config):
             author_id INTEGER REFERENCES authors(id),
             genre_id INTEGER REFERENCES genres(id),
             publisher_id INTEGER REFERENCES publishers(id),
-            year INTEGER
+            year INTEGER,
+                   
+            CONSTRAINT books_unique UNIQUE (title, author_id, genre_id, publisher_id, year)
         );
 
         CREATE TABLE IF NOT EXISTS borrowers (
             id SERIAL PRIMARY KEY,
             name TEXT NOT NULL,
-            address TEXT
+            address TEXT,
+                   
+            CONSTRAINT borrowers_unique UNIQUE (name, address)
         );
 
         CREATE TABLE IF NOT EXISTS borrows (
             id SERIAL PRIMARY KEY,
             book_id INTEGER REFERENCES books(id),
             borrower_id INTEGER REFERENCES borrowers(id),
-            borrow_date DATE
+            borrow_date DATE,
+                   
+            CONSTRAINT borrows_unique UNIQUE (book_id, borrower_id, borrow_date)
         );
     """)
 
