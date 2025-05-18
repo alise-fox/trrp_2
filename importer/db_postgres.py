@@ -43,7 +43,7 @@ def insert_normalized(config, row):
     cursor.execute("""
         INSERT INTO books (title, author_id, genre_id, publisher_id, year)
         VALUES (%s, %s, %s, %s, %s)
-        ON CONFLICT ON CONSTRAINT (books_unique) DO NOTHING
+        ON CONFLICT ON CONSTRAINT books_unique DO NOTHING
         RETURNING id;
     """, (title, author_id, genre_id, publisher_id, year))
     res = cursor.fetchone()
@@ -60,7 +60,7 @@ def insert_normalized(config, row):
     # ON CONFLICT (name, address) DO NOTHING RETURNING id;
     cursor.execute("""
         INSERT INTO borrowers (name, address) VALUES (%s, %s)
-        ON CONFLICT ON CONSTRAINT (borrowers_unique) DO NOTHING RETURNING id;
+        ON CONFLICT ON CONSTRAINT borrowers_unique DO NOTHING RETURNING id;
     """, (borrower_name, borrower_address))
     res = cursor.fetchone()
     if res:
@@ -75,7 +75,7 @@ def insert_normalized(config, row):
     cursor.execute("""
         INSERT INTO borrows (book_id, borrower_id, borrow_date)
         VALUES (%s, %s, %s)
-        ON CONFLICT ON CONSTRAINT (borrows_unique) DO NOTHING;
+        ON CONFLICT ON CONSTRAINT borrows_unique DO NOTHING;
     """, (book_id, borrower_id, borrow_date))
 
     conn.commit()
