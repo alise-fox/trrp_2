@@ -1,0 +1,16 @@
+sqlite_db: 'books.db'
+postgres:
+  host: 'localhost'
+  dbname: 'books'
+  user: 'postgres'
+  password: 'password'
+rabbitmq:
+  host: 'localhost'
+  queue: 'books'
+sockets:
+  host: '0.0.0.0'
+  port: 65432
+encryption:
+  method: 'aes_rsa'
+  public_key_path: 'public.pem'
+  private_key_path: 'private.pem'
