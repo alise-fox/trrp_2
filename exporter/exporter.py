@@ -10,9 +10,8 @@ def main():
     args = parser.parse_args()
     config = read_config("config/config.yaml")
 
-    create_table()
-    fill_example_data()
-    print("sa")
+    create_table(config)
+    fill_example_data(config)
 
     data_iter = read_books(config['sqlite_db'])
 
