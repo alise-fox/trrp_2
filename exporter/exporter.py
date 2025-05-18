@@ -8,11 +8,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=["socket", "rabbitmq"], required=True)
     args = parser.parse_args()
-    config = read_config("../config/config.yaml")
+    config = read_config("config/config.yaml")
 
     create_table()
     fill_example_data()
-    
+    print("sa")
+
     data_iter = read_books(config['sqlite_db'])
 
     if args.mode == "socket":

@@ -7,7 +7,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=["socket", "rabbitmq"], required=True)
     args = parser.parse_args()
-    config = read_config("../config/config.yaml")
+    config = read_config("config/config.yaml")
     if args.mode == "socket":
         receive_via_socket(config)
     elif args.mode == "rabbitmq":

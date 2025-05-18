@@ -2,7 +2,7 @@ import yaml
 import sqlite3
 
 def create_table():
-    conn = sqlite3.connect('../books.db')  # путь до файла в config.yaml
+    conn = sqlite3.connect('books.db')  # путь до файла в config.yaml
     cursor = conn.cursor()
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS books_all (
@@ -26,7 +26,7 @@ def fill_example_data():
         ("Преступление и наказание", "Фёдор Достоевский", "Роман", "АСТ", 1866, "Пётр Петров", "ул. Гагарина, 10", "2024-05-01"),
         ("Мастер и Маргарита", "Михаил Булгаков", "Роман", "Азбука", 1967, "Мария Сидорова", "ул. Кирова, 5", "2024-04-20"),
     ]
-    conn = sqlite3.connect('../books.db')
+    conn = sqlite3.connect('books.db')
     cursor = conn.cursor()
     cursor.executemany('''
     INSERT INTO books_all (title, author, genre, publisher, year, borrower_name, borrower_address, borrow_date)
