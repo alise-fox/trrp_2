@@ -3,12 +3,12 @@ postgres:
   host: 'localhost'
   dbname: 'books'
   user: 'postgres'
-  password: 'password'
+  password: '1402'
 rabbitmq:
   host: 'localhost'
   queue: 'books'
 sockets:
-  host: '0.0.0.0'
+  host: '176.109.109.31'
   port: 65432
 encryption:
   method: 'aes_rsa'
