@@ -38,12 +38,12 @@ def insert_normalized(config, row):
         cursor.execute("SELECT id FROM publishers WHERE name = %s;", (publisher,))
         publisher_id = cursor.fetchone()[0]
 
-    print(title, author_id, genre_id, publisher_id, year)
+    # print(title, author_id, genre_id, publisher_id, year)
+    # ON CONFLICT (title, author_id, genre_id, publisher_id, year) DO NOTHING
     # 4. Книга
     cursor.execute("""
         INSERT INTO books (title, author_id, genre_id, publisher_id, year)
         VALUES (%s, %s, %s, %s, %s)
-        ON CONFLICT (title, author_id, genre_id, publisher_id, year) DO NOTHING
         RETURNING id;
     """, (title, author_id, genre_id, publisher_id, year))
     res = cursor.fetchone()
