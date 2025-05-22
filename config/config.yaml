@@ -19,6 +19,9 @@ rabbitmq-import:
 sockets:
   host: '176.109.109.31'
   port: 65432
+grpc:
+  host: "176.109.109.31"
+  port: 50051
 encryption:
   method: 'aes_rsa'
   public_key_path: 'public.pem'

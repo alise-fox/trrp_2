@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package books;
+
+service BookTransfer {
+    rpc SendBook (BookData) returns (BookReply) {}
+}
+
+message BookData {
+    int32 id = 1;
+    string title = 2;
+    string author = 3;
+    string genre = 4;
+    string publisher = 5;
+    int32 year = 6;
+    string borrower_name = 7;
+    string borrower_address = 8;
+    string borrow_date = 9;
+}
+
+message BookReply {
+    bool success = 1;
+    string message = 2;
+}
