@@ -1,7 +1,6 @@
 import grpc
-import books_pb2
-import books_pb2_grpc
-from utils import read_books, read_config, create_table, fill_example_data
+from grpc_alice import books_pb2, books_pb2_grpc
+from exporter.utils import read_books, read_config, create_table, fill_example_data
 
 def run():
     config = read_config("config/config.yaml")
