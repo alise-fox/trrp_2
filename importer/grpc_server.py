@@ -2,7 +2,7 @@ import grpc
 from concurrent import futures
 from grpc_alice import books_pb2, books_pb2_grpc
 from importer.db_postgres import insert_normalized
-from importer.utils import read_config
+from importer.utils import read_config, create_table
 
 class BookTransferServicer(books_pb2_grpc.BookTransferServicer):
     def __init__(self, config):
@@ -21,6 +21,7 @@ class BookTransferServicer(books_pb2_grpc.BookTransferServicer):
 
 def serve():
     config = read_config("config/config.yaml")
+    create_table(config)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     books_pb2_grpc.add_BookTransferServicer_to_server(BookTransferServicer(config), server)
     server.add_insecure_port('[::]:50051')  # слушаем все интерфейсы на порту 50051
