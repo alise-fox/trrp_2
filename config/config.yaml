@@ -22,6 +22,8 @@ sockets:
 grpc:
   host: "176.109.109.31"
   port: 50051
+  cert_path: "server.crt"
+  key_path: "server.key"
 encryption:
   method: 'aes_rsa'
   public_key_path: 'public.pem'

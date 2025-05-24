@@ -29,10 +29,19 @@ class BookTransferServicer(books_pb2_grpc.BookTransferServicer):
 
 def serve():
     config = read_config("config/config.yaml")
+
+    with open(config["grpc"]["key_path"], "rb") as f:
+        private_key = f.read()
+    with open(config["grpc"]["cert_path"], "rb") as f:
+        certificate_chain = f.read()
+    server_credentials = grpc.ssl_server_credentials(
+        [(private_key, certificate_chain)]
+    )
+
     create_table(config)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     books_pb2_grpc.add_BookTransferServicer_to_server(BookTransferServicer(config), server)
-    server.add_insecure_port('[::]:50051') 
+    server.add_secure_port('[::]:50051', server_credentials) 
     print("gRPC сервер запущен на порту 50051")
     server.start()
     server.wait_for_termination()

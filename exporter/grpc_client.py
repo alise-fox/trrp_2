@@ -20,7 +20,12 @@ def book_generator(sqlite_db):
 
 def run():
     config = read_config("config/config.yaml")
-    channel = grpc.insecure_channel(f"{config['grpc']['host']}:{config['grpc']['port']}")
+
+    with open(config["grpc"]["cert_path"], "rb") as f:
+        trusted_certs = f.read()
+    credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
+
+    channel = grpc.secure_channel(f"{config['grpc']['host']}:{config['grpc']['port']}", credentials)
     stub = books_pb2_grpc.BookTransferStub(channel)
 
     create_table(config)
