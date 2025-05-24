@@ -26,7 +26,7 @@ def run():
     create_table(config)
     fill_example_data(config)
 
-    for row in read_books(config['sqlite_db']):
+    # for row in read_books(config['sqlite_db']):
         # book = books_pb2.BookData(
         #     id=row[0],
         #     title=row[1],
@@ -38,8 +38,8 @@ def run():
         #     borrower_address=row[7],
         #     borrow_date=row[8]
         # )
-        reply = stub.SendBook(book_generator())
-        print("Ответ от сервера:", reply.success, reply.message)
+    reply = stub.SendBook(book_generator(config['sqlite_db']))
+    print("Ответ от сервера:", reply.success, reply.message)
 
 if __name__ == "__main__":
     run()
