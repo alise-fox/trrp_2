@@ -3,7 +3,7 @@ syntax = "proto3";
 package books;
 
 service BookTransfer {
-    rpc SendBook (BookData) returns (BookReply) {}
+    rpc SendBook (stream BookData) returns (BookReply) {}
 }
 
 message BookData {

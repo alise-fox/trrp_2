@@ -35,7 +35,7 @@ class BookTransferStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SendBook = channel.stream_unary(
+        self.SendBook = channel.unary_unary(
                 '/books.BookTransfer/SendBook',
                 request_serializer=books__pb2.BookData.SerializeToString,
                 response_deserializer=books__pb2.BookReply.FromString,
@@ -45,7 +45,7 @@ class BookTransferStub(object):
 class BookTransferServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def SendBook(self, request_iterator, context):
+    def SendBook(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -54,7 +54,7 @@ class BookTransferServicer(object):
 
 def add_BookTransferServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SendBook': grpc.stream_unary_rpc_method_handler(
+            'SendBook': grpc.unary_unary_rpc_method_handler(
                     servicer.SendBook,
                     request_deserializer=books__pb2.BookData.FromString,
                     response_serializer=books__pb2.BookReply.SerializeToString,
@@ -71,7 +71,7 @@ class BookTransfer(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SendBook(request_iterator,
+    def SendBook(request,
             target,
             options=(),
             channel_credentials=None,
@@ -81,8 +81,8 @@ class BookTransfer(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_unary(
-            request_iterator,
+        return grpc.experimental.unary_unary(
+            request,
             target,
             '/books.BookTransfer/SendBook',
             books__pb2.BookData.SerializeToString,

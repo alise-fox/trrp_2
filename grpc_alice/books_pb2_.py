@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x62ooks.proto\x12\x05\x62ooks\"\xab\x01\n\x08\x42ookData\x12\n\n\x02id\x18\x01 \x01(\x05\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x03 \x01(\t\x12\r\n\x05genre\x18\x04 \x01(\t\x12\x11\n\tpublisher\x18\x05 \x01(\t\x12\x0c\n\x04year\x18\x06 \x01(\x05\x12\x15\n\rborrower_name\x18\x07 \x01(\t\x12\x18\n\x10\x62orrower_address\x18\x08 \x01(\t\x12\x13\n\x0b\x62orrow_date\x18\t \x01(\t\"-\n\tBookReply\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t2A\n\x0c\x42ookTransfer\x12\x31\n\x08SendBook\x12\x0f.books.BookData\x1a\x10.books.BookReply\"\x00(\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x62ooks.proto\x12\x05\x62ooks\"\xab\x01\n\x08\x42ookData\x12\n\n\x02id\x18\x01 \x01(\x05\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x03 \x01(\t\x12\r\n\x05genre\x18\x04 \x01(\t\x12\x11\n\tpublisher\x18\x05 \x01(\t\x12\x0c\n\x04year\x18\x06 \x01(\x05\x12\x15\n\rborrower_name\x18\x07 \x01(\t\x12\x18\n\x10\x62orrower_address\x18\x08 \x01(\t\x12\x13\n\x0b\x62orrow_date\x18\t \x01(\t\"-\n\tBookReply\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t2?\n\x0c\x42ookTransfer\x12/\n\x08SendBook\x12\x0f.books.BookData\x1a\x10.books.BookReply\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,5 +36,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_BOOKREPLY']._serialized_start=196
   _globals['_BOOKREPLY']._serialized_end=241
   _globals['_BOOKTRANSFER']._serialized_start=243
-  _globals['_BOOKTRANSFER']._serialized_end=308
+  _globals['_BOOKTRANSFER']._serialized_end=306
 # @@protoc_insertion_point(module_scope)
