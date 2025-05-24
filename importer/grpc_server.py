@@ -9,6 +9,8 @@ class BookTransferServicer(books_pb2_grpc.BookTransferServicer):
         self.config = config
 
     def SendBook(self, request_iterator, context):
+        count = 0
+        error = False
         for book in request_iterator:
             row = (
                 book.id, book.title, book.author, book.genre, book.publisher,
@@ -16,9 +18,14 @@ class BookTransferServicer(books_pb2_grpc.BookTransferServicer):
             )
             try:
                 insert_normalized(self.config, row)
-                return books_pb2.BookReply(success=True, message="Inserted successfully")
             except Exception as e:
-                return books_pb2.BookReply(success=False, message=str(e))
+                error = True
+                break
+            count += 1
+        if not error:
+            return books_pb2.BookReply(success=True, message=f"Inserted {count} rows successfully")
+        else:
+            return books_pb2.BookReply(success=False, message="Error")
 
 def serve():
     config = read_config("config/config.yaml")
